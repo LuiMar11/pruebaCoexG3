@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('tasa_interes')->nullable();
             $table->date('fecha_desesmbolso')->nullable();
             $table->double('cuota_mensual')->null;
+            $table->text('observaciones')->nullable();
            
             $table->integer('id_cliente')->unsigned();
 

@@ -31,12 +31,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('clientes.index') }}" class="nav-link align-middle px-0 text-white">
+                        <a href="{{ route('cliente.index') }}" class="nav-link align-middle px-0 text-white">
                             <i class="fas fa-user-tie"></i><span class="ms-1 d-none d-sm-inline"> Clientes</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle text-white">
+                        <a href="{{ route('credito.index') }}" class="nav-link px-0 align-middle text-white">
                             <i class="fas fa-coins"></i><span class="ms-1 d-none d-sm-inline"> Créditos</span></a>
                     </li>
 
@@ -51,22 +51,49 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="card border-success">
+                    <div class="card border-success gap-3">
                         <form action="{{ route('cliente.store') }}">
                             @csrf
-                            <div class="form-group"><input name="nombres" id="nombres" class="form-control"
-                                    type="text" placeholder="Nombres" required>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Pagare número</label>
+                                <div class="col-sm-8">
+                                    <input required type="number" class="form-control" id="num_pagare"
+                                        name="num_pagare" placeholder="Pagare número">
+                                </div>
                             </div>
-                            <div class="form-group"><input name="apellidos" id="apellidos" class="form-control"
-                                    type="text" placeholder="Apellidos">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Cuotas mensuales</label>
+                                <div class="col-sm-8">
+                                    <input required type="number" class="form-control" id="cuota_mensual"
+                                        name="cuota_mensual" placeholder="Cuota">
+                                </div>
                             </div>
-                            <div class="form-group"><input name="cedula" id="cedula" class="form-control"
-                                    type="text" placeholder="Cédula/NIT">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Monto crédito</label>
+                                <div class="col-sm-8">
+                                    <input required type="number" class="form-control" id="monto_credito"
+                                        name="monto_credito" placeholder="Cantidad">
+                                </div>
                             </div>
 
-                            <div class="form-group"><input name="email" id="email" class="form-control"
-                                    type="email" placeholder="Email" required>
+                            <div class="form-group row">
+                                <form action="form action="{{ route('credito.cliente') }}" method="GET"">
+                                    <label class="col-sm-2 col-form-label">Cédula cliente</label>
+                                    <div class="col-sm-6">
+                                        <input required type="number" class="form-control" id="monto_credito"
+                                            name="monto_credito" placeholder="Cédula">
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <button type="submit"  class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </form>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary text-align-center">Agregar</button>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>

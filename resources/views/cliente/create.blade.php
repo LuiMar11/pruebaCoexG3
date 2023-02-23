@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="credito.index" class="nav-link px-0 align-middle text-white">
+                        <a href="{{ route('credito.index') }}" class="nav-link px-0 align-middle text-white">
                             <i class="fas fa-coins"></i><span class="ms-1 d-none d-sm-inline"> Créditos</span></a>
                     </li>
 
@@ -51,8 +51,8 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="card border-success">
-                        <form action="{{ route('cliente.store') }}" method="POST">
+                    <div class="card border-success ">
+                        <form  action="{{ route('cliente.store') }}" method="POST" >
                             @csrf
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Nombres</label>

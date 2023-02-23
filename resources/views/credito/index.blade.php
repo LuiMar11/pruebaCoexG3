@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
+<body>
+    @include('sweetalert::alert')
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -51,12 +53,114 @@
                         </div>
                     </div>
                     <div class="container">
-                        <table>
-                            <thead>
-                                <tr>#</tr>
-                                <tr>Nombres</tr>
-                            </thead>
-                        </table>
+                        <div class="card border-success">
+                            <div class="card-header text-center">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <a class="btn btn-primary" href="{{ route('credito.create') }}">Nuevo
+                                            Crédito</a>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <form action="{{ route('credito.index') }}" method="GET">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                </div>
+                                                <input name="texto" id="texto" type="text" class="form-control"
+                                                    placeholder="Cédula, Nombres o Apellidos">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-success" type="submit"
+                                                        id="search">Buscar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" card-body justify-content-center table-responsive">
+                                <table class="table table-hover text-center">
+                                    <thead class="table-ligth" style="background-color: #4edfd3;">
+                                        <th>Pagare número</th>
+                                        <th>Monto crédito</th>
+                                        <th>Fecha cédito</th>
+                                        <th>Fecha desembolso</th>
+                                        <th>Cuota mensual</th>
+                                        <th>Cédula cliente</th>
+                                        <th>Cliente</th>
+                                        <th>Observaciones</th>
+                                        <th>Información</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        @if (count($creditos) <= 0)
+                                            <tr>
+                                                <td colspan="12">
+                                                    No se encontraron resultados
+                                                </td>
+                                            </tr>
+                                        @else
+                                            @foreach ($creditos as $credito)
+                                                <tr>
+                                                    <td>
+                                                        {{ $credito->num_pagare }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $credito->monto_credito }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $credito->fecha_credito }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ $credito->fecha_desembolso }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $credito->cuota_mensual }}
+                                                    </td>
+                                                    <td>
+                                                        @foreach ($clientes as $cliente)
+                                                            @if ($credito->id_cliente == $cliente->id)
+                                                            {{ $cliente->nombres }} {{ $cliente->apellidos }}
+                                                            @endif
+                                                        @endforeach
+
+
+                                                    </td>
+                                                    <td>{{ $credito->observaciones }}</td>
+                                                    <td>
+                                                        <a class="btn btn-primary"
+                                                            href="{{ route('credito.show', $credito->id) }} "><i
+                                                                class="fas fa-info-circle"></i></a>
+                                                    </td>
+                                                    <td>
+
+                                                        <a class="btn btn-success"
+                                                            href="{{ route('credito.edit', $credito->id) }} "><i
+                                                                class="fas fa-edit"></i></a>
+
+                                                    </td>
+                                                    <td>
+
+                                                        <form action="{{ route('credito.destroy', $credito->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            {{ method_field('DELETE') }}
+                                                            <button class="btn btn-danger" type="submit"
+                                                                onclick="return confirm('¿Desea eliminar el credito?')"><i
+                                                                    class="fas fa-trash-alt"></i></button>
+                                                        </form>
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                             
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>

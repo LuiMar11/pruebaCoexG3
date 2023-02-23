@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
-use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ClienteController extends Controller
 {
@@ -42,6 +41,7 @@ class ClienteController extends Controller
     {
         $cliente = request()->except('_token');
         Cliente::insert($cliente);
+        Alert::success('Cliente agregado a la base de datos');
         return redirect(route('cliente.index'));
     }
 
@@ -71,6 +71,7 @@ class ClienteController extends Controller
         $datos = request()->except('_token', '_method');
         Cliente::where('id', '=', $id)->update($datos);
         $cliente = Cliente::findOrFail($id);
+        Alert::success('Cliente actualizado');
         return redirect(route('cliente.index'));
     }
 
@@ -81,6 +82,7 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::findOrFail($id);
         Cliente::destroy($id);
+        Alert::success('Cliente eliminado');
         return redirect(route('cliente.index'));
     }
 }

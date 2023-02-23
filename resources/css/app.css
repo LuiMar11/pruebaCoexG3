@@ -1,0 +1,9 @@
+.admin{
+    display: grid;
+    align-content: center;
+}
+
+.jumbotron{
+    border-radius: 25px;
+    background-color: #b7b3b3;
+}

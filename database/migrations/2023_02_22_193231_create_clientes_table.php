@@ -22,7 +22,7 @@ return new class extends Migration
             $table->double('cupo_total');
             $table->string('ciudad');
             $table->double('cupo_disponible');
-            $table->string('estado')->nullable();
+            $table->string('estado')->default('Activo');
             $table->integer('dias_gracia')->nullable();
             $table->timestamps();
         });

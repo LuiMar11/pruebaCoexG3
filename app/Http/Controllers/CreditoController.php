@@ -6,6 +6,7 @@ use App\Models\Credito;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CreditoController extends Controller
 {
@@ -23,8 +24,9 @@ class CreditoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('credito.create');
+    {   
+        $clientes = Cliente::all();
+        return view('credito.create',compact('clientes'));
     }
 
     public function searchCliente(Request $req)
@@ -42,8 +44,14 @@ class CreditoController extends Controller
      */
     public function store(Request $request)
     {
-        $credito = request()->except('_token');
-        Credito::insert($credito);
+        $credito = new Credito();
+        $credito->num_pagare = $request->get('num_pagare');
+        $credito->monto_credito = $request->get('monto_credito');
+        $credito->cuota_mensual = $request->get('cuota_mensual');
+        $credito->id_cliente = $request->get('id_cliente');
+
+        
+        $credito->save();
         Alert::success('Crédito creado');
         return redirect(route('credito.index'));
     }

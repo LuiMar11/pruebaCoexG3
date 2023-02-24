@@ -55,38 +55,35 @@
                         <form action="{{ route('cliente.update', $cliente->id) }}" method="POST">
                             @csrf
                             {{ method_field('PATCH') }}
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Nombres</label>
-                                <div class="col-sm-8">
+                            <br>
+                            <div class="form-group row mx-auto">
+                                <label class="col-sm-2 col-form-label"><b>Nombres</b> </label>
+                                <div class="col-sm-4">
                                     <input required type="text" class="form-control" id="nombres" name="nombres"
                                         value="{{ $cliente->nombres }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Apellidos</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"> <b>Apellidos</b> </label>
+                                <div class="col-sm-3">
                                     <input required type="text" class="form-control" id="apellidos" name="apellidos"
                                         value="{{ $cliente->apellidos }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Cédula/Nit</label>
-                                <div class="col-sm-8">
+                            </div><br>
+                            <div class="form-group row mx-auto">
+                                <label class="col-sm-2 col-form-label"><b>Cédula/Nit</b> </label>
+                                <div class="col-sm-4">
                                     <input required type="text" class="form-control" id="cedula" name="cedula"
                                         value="{{ $cliente->cedula }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Dirección</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"><b>Dirección</b> </label>
+                                <div class="col-sm-3">
                                     <input required type="text" class="form-control" id="direccion" name="direccion"
                                         value="{{ $cliente->direccion }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Ciudad</label>
-                                <div class="col-sm-8">
-                                    <select required class="form-control" name="ciudad" id="ciudad">
+                            </div><br>
+                            <div class="form-group row mx-auto">
+                                <label class="col-sm-2 col-form-label"><b> Ciudad </b></label>
+                                <div class="col-sm-4">
+                                    <select required class="form-select" name="ciudad" id="ciudad">
                                         <option value="{{ $cliente->ciudad }}">{{ $cliente->ciudad }}</option>
                                         <option value="Bogota">Bogota</option>
                                         <option value="Bucaramanga">Bucaramanga</option>
@@ -95,57 +92,53 @@
                                         <option value="Manizales">Manizales</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Telefono</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"><b>Telefono</b></label>
+                                <div class="col-sm-3">
                                     <input required type="text" class="form-control" id="telefono" name="telefono"
                                         value="{{ $cliente->telefono }}">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Contacto</label>
-                                <div class="col-sm-8">
+                          <br>
+                            <div class="form-group row mx-auto"">
+                                <label class="col-sm-2 col-form-label"><b>Contacto</b> </label>
+                                <div class="col-sm-4">
                                     <input required type="text" class="form-control" id="contacto"
                                         name="contacto" value="{{ $cliente->contacto }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Cupo total</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"><b>Cupo total</b> </label>
+                                <div class="col-sm-3">
                                     <input required type="number" class="form-control" id="cupo_total"
                                         name="cupo_total" value="{{ $cliente->cupo_total }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Cupo disponible</label>
-                                <div class="col-sm-8">
+                            </div><br>
+                            <div class="form-group row mx-auto"">
+                                <label class="col-sm-2 col-form-label"><b>Cupo disponible</b> </label>
+                                <div class="col-sm-4">
                                     <input required type="number" class="form-control" id="cupo_disponible"
                                         name="cupo_disponible" value="{{ $cliente->cupo_disponible }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Dias de gracia</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"><b>Dias de gracia</b> </label>
+                                <div class="col-sm-3">
                                     <input required type="number" class="form-control" id="dias_gracia"
                                         name="dias_gracia" value="{{ $cliente->dias_gracia }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Estado</label>
+                            </div> <br>
+                            <div class="form-group row mx-auto">
+                                <label class="col-sm-2 col-form-label"><b>Estado</b> </label>
                                 <div class="col-sm-8">
-                                    <select required class="form-control" name="estado" id="estado">
+                                    <select required class="form-select" name="estado" id="estado">
                                         <option value="{{ $cliente->estado }}">{{ $cliente->estado }}</option>
                                         <option value="Activo">Activo</option>
                                         <option value="Inactivo">Inactivo</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div><br>
+                            <div class="form-group row mx-auto justify-content-center">
+                                <div class="col-sm-2 ">
+                                    <button type="submit" class=" btn btn-primary">Guardar cambios</button>
                                 </div>
                             </div>
+                            <br>
                         </form>
                     </div>
                 </div>

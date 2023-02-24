@@ -47,44 +47,41 @@
             <section>
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h1 class="display-6 text-center">Información Cliente</h1>
+                        <h1 class="display-8 text-center">Información Cliente</h1>
                     </div>
                 </div>
                 <div class="container">
                     <div class="card border-success">
                         <form action="{{ route('cliente.index') }}">
                             @csrf
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Nombres</label>
-                                <div class="col-sm-8">
+                            <br>
+                            <div class="form-group row mx-auto">
+                                <label class="col-sm-2 col-form-label"><b>Nombres</b> </label>
+                                <div class="col-sm-4">
                                     <input disabled type="text" class="form-control" id="nombres" name="nombres"
                                         placeholder="{{ $cliente->nombres }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Apellidos</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"> <b>Apellidos</b> </label>
+                                <div class="col-sm-3">
                                     <input disabled type="text" class="form-control" id="apellidos" name="apellidos"
                                         placeholder="{{ $cliente->apellidos }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Cédula/Nit</label>
-                                <div class="col-sm-8">
+                            </div><br>
+                            <div class="form-group row mx-auto">
+                                <label class="col-sm-2 col-form-label"><b>Cédula/Nit</b> </label>
+                                <div class="col-sm-4">
                                     <input disabled type="text" class="form-control" id="cedula" name="cedula"
                                         placeholder="{{ $cliente->cedula }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Dirección</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"><b>Dirección</b> </label>
+                                <div class="col-sm-3">
                                     <input disabled type="text" class="form-control" id="direccion" name="direccion"
                                         placeholder="{{ $cliente->direccion }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Ciudad</label>
-                                <div class="col-sm-8">
+                            </div><br>
+                            <div class="form-group row mx-auto">
+                                <label class="col-sm-2 col-form-label"><b> Ciudad </b></label>
+                                <div class="col-sm-4">
                                     <select disabled class="form-control" name="ciudad" id="ciudad">
                                         <option value="">{{ $cliente->ciudad }}</option>
                                         <option value="Bogota">Bogota</option>
@@ -94,44 +91,39 @@
                                         <option value="Manizales">Manizales</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Telefono</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"><b>Telefono</b></label>
+                                <div class="col-sm-3">
                                     <input disabled type="text" class="form-control" id="telefono" name="telefono"
                                         placeholder="{{ $cliente->telefono }}">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Contacto</label>
-                                <div class="col-sm-8">
+                          <br>
+                            <div class="form-group row mx-auto"">
+                                <label class="col-sm-2 col-form-label"><b>Contacto</b> </label>
+                                <div class="col-sm-4">
                                     <input disabled type="text" class="form-control" id="contacto"
                                         name="contacto" placeholder="{{ $cliente->contacto }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Cupo total</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"><b>Cupo total</b> </label>
+                                <div class="col-sm-3">
                                     <input disabled type="number" class="form-control" id="cupo_total"
                                         name="cupo_total" placeholder="{{ $cliente->cupo_total }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Cupo disponible</label>
-                                <div class="col-sm-8">
+                            </div><br>
+                            <div class="form-group row mx-auto"">
+                                <label class="col-sm-2 col-form-label"><b>Cupo disponible</b> </label>
+                                <div class="col-sm-4">
                                     <input disabled type="number" class="form-control" id="cupo_disponible"
                                         name="cupo_disponible" placeholder="{{ $cliente->cupo_disponible }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Dias de gracia</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 col-form-label"><b>Dias de gracia</b> </label>
+                                <div class="col-sm-3">
                                     <input disabled type="number" class="form-control" id="dias_gracia"
                                         name="dias_gracia" placeholder="{{ $cliente->dias_gracia }}">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Estado</label>
+                            </div> <br>
+                            <div class="form-group row mx-auto">
+                                <label class="col-sm-2 col-form-label"><b>Estado</b> </label>
                                 <div class="col-sm-8">
                                     <select disabled class="form-control" name="estado" id="estado">
                                         <option value="">{{ $cliente->estado }}</option>
@@ -139,10 +131,10 @@
                                         <option value="Inactivo">Inactivo</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-10 justify-content-center">
-                                    <button type="submit" class="btn btn-primary">Volver</button>
+                            </div><br>
+                            <div class="form-group row mx-auto justify-content-center">
+                                <div class="col-sm-2 ">
+                                    <button type="submit" class=" btn btn-primary">Volver</button>
                                 </div>
                             </div>
                         </form>

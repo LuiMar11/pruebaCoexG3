@@ -49,8 +49,39 @@
                     <div class="jumbotron jumbotron-fluid">
                         <div class="container">
                             <h1 class="display-6 text-center">Inicio</h1>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="row justify-content-center">
+                                                <div class="col">
+                                                    <p class="card-text">Clientes</p>
+                                                </div>
+                                                <div class="col">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                            </div>
+                                            <p class="card-text">{{ $clientes }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="row justify-content-center">
+                                                <div class="col">
+                                                    <p class="card-text">Creditos</p>
+                                                </div>
+                                                <div class="col">
+                                                    <i class="fas fa-credit-card"></i>
+                                                </div>
+                                            </div>
+                                            <p class="card-text">{{ $creditos }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </section>
             </div>
         </div>

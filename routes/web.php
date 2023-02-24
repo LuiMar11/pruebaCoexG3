@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CreditoController;
+use App\Models\Cliente;
+use App\Models\Credito;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Routing\RouteCompiler;
@@ -19,7 +21,9 @@ use Symfony\Component\Routing\RouteCompiler;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $clientes = Cliente::all()->count();;
+    $creditos = Credito::all()->count();;
+    return view('welcome',compact('clientes','creditos'));
 })->name('welcome');
 
 Route::resource('cliente',ClienteController::class);

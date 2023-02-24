@@ -24,18 +24,19 @@ class CreditoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
+    {
         $clientes = Cliente::all();
-        return view('credito.create',compact('clientes'));
+        return view('credito.create', compact('clientes'));
     }
 
     public function searchCliente(Request $req)
     {
         $cedula = $req->get('cedula');
+
         $cliente = DB::table('clientes')
             ->select(
                 'cedula'
-            )->where('cedula', 'LIKE', '%' . $cedula . '%');
+            )->where('cedula', 'LIKE', '%' . $cedula . '%')->get();
 
         return $cliente;
     }
@@ -45,14 +46,24 @@ class CreditoController extends Controller
     public function store(Request $request)
     {
         $credito = new Credito();
-        $credito->num_pagare = $request->get('num_pagare');
-        $credito->monto_credito = $request->get('monto_credito');
-        $credito->cuota_mensual = $request->get('cuota_mensual');
-        $credito->id_cliente = $request->get('id_cliente');
-
-        
-        $credito->save();
-        Alert::success('Crédito creado');
+        if ((Credito::where('num_pagare', $request->num_pagare)->exists())) {
+            Alert::warning('El crédito ya existe');
+            return redirect(route('credito.create'));
+        } else {
+            DB::table('creditos')->insert([
+                'num_pagare' => $request->get('num_pagare'),
+                'monto_credito' => $request->get('monto_credito'),
+                'cuota_mensual' => $request->get('cuota_mensual'),
+               'cuota_inicial' => $request->get('cuota_inicial'),
+               'id_cliente' => $request->get('id_cliente'),
+               'fecha_credito' => $request->get('fecha_credito'),
+               'tasa_interes' => $request->get('tasa_interes'),
+               'fecha_desembolso' => $request->get('fecha_desembolso'),
+               'observaciones' => $request->get('fecha_desembolso')
+            ]);
+         
+            Alert::success('Crédito creado');
+        }
         return redirect(route('credito.index'));
     }
 

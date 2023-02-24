@@ -40,19 +40,24 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $cliente = new Cliente();
-        $cliente->nombres= $request->get('nombres');
-        $cliente->apellidos= $request->get('apellidos');
-        $cliente->cedula= $request->get('cedula');
-        $cliente->direccion= $request->get('direccion');
-        $cliente->ciudad= $request->get('ciudad');
-        $cliente->telefono= $request->get('telefono');
-        $cliente->contacto= $request->get('contacto');
-        $cliente->cupo_total= $request->get('cupo_total');
-        $cliente->cupo_disponible= $request->get('cupo_total');
-        $cliente->dias_gracia= $request->get('dias_gracia');
-        
-        $cliente->save();
-        Alert::success('Cliente agregado a la base de datos');
+        if ((Cliente::where('cedula', $request->cedula)->exists())) {
+            Alert::warning('El cliente ya existe');
+            return redirect(route('cliente.create'));
+        } else {
+            $cliente->nombres = $request->get('nombres');
+            $cliente->apellidos = $request->get('apellidos');
+            $cliente->cedula = $request->get('cedula');
+            $cliente->direccion = $request->get('direccion');
+            $cliente->ciudad = $request->get('ciudad');
+            $cliente->telefono = $request->get('telefono');
+            $cliente->contacto = $request->get('contacto');
+            $cliente->cupo_total = $request->get('cupo_total');
+            $cliente->cupo_disponible = $request->get('cupo_total');
+            $cliente->dias_gracia = $request->get('dias_gracia');
+            $cliente->save();
+            Alert::success('Cliente agregado a la base de datos');
+        }
+
         return redirect(route('cliente.index'));
     }
 

@@ -10,10 +10,10 @@
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="container">
                         <div class="card border-success"><br>
-                            <form action="{{ route('cliente.store') }}" method="POST">
+                            <form action="{{ route('credito.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group row mx-2">
                                     <label class="col-sm-2 col-form-label"><b>Pagare número</b></label>
@@ -64,7 +64,7 @@
                                     <label class="col-sm-2 col-form-label"><b>Cuotas mensuales</b> </label>
                                     <div class="col-sm-3">
                                         <input required type="number" class="form-control" id="cuota_mensual"
-                                            name="cuota_mensual" placeholder="Cuota">
+                                            name="cuota_mensual" placeholder="Cuotas">
                                     </div>
                                 </div> <br>
                                 <div class="form-group row mx-2">
@@ -73,7 +73,7 @@
                                         <input required type="number" class="form-control" id="monto_credito"
                                             name="monto_credito" placeholder="Cantidad">
                                     </div>
-                                    <form action="form action="{{ route('credito.cliente') }}" method="GET"">
+                                    <form action="" method="GET">
                                         <label class="col-sm-2 col-form-label"><b>Cédula cliente</b> </label>
                                         <div class="col-sm-3">
                                             <input required type="text" class="form-control" id="cedula"
@@ -87,17 +87,17 @@
                                 </div><br>
 
                                 <div class="form-group row mx-2">
-                                    <label class="col-sm-2 col-form-label"><b>Cuotas mensuales</b> </label>
+                                    <label class="col-sm-2 col-form-label"><b>Cuota inicial</b> </label>
                                     <div class="col-sm-4">
-                                        <input required type="number" class="form-control" id="cuota_mensual"
-                                            name="cuota_mensual" placeholder="Cuota">
+                                        <input required type="number" class="form-control" id="cuota_inicial"
+                                            name="cuota_inicial" placeholder="Cantidad">
                                     </div>
                                     <label class="col-sm-2 col-form-label"><b>Cliente</b></label>
                                     <div class="col-sm-3">
                                         <select class="form-select" name="id_cliente" id="id_cliente">
                                             <option defaultValue>Seleccionar...</option>
                                             @foreach ($clientes as $cliente)
-                                                <option value="{{ $cliente->id }}">{{ $cliente->nombres }}
+                                                <option value="{{ $cliente->cedula }}">{{ $cliente->nombres }}
                                                     {{ $cliente->apellidos }}</option>
                                             @endforeach
                                         </select>
@@ -112,7 +112,7 @@
                                     </div>
                                     <label class="col-sm-2 col-form-label"><b>Tasa de interes</b></label>
                                     <div class="col-sm-3">
-                                        <select class="form-select" name="id_cliente" id="id_cliente">
+                                        <select required class="form-select" name="id_cliente" id="id_cliente">
                                             <option defaultValue>Seleccionar...</option>
                                             <option value="2.7">2.7%</option>
                                             <option value="1.7">1.7%</option>

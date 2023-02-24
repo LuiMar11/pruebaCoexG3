@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('creditos', function (Blueprint $table) {
             $table->id();
-            $table->string('num_pagare');
+            $table->string('num_pagare')->unique();
             $table->double('monto_credito');
-            $table->double('cuota_inicial');
+            $table->double('cuota_inicial')->nullable();
             $table->date('fecha_credito');
             $table->float('tasa_interes')->nullable();
-            $table->date('fecha_desesmbolso')->nullable();
+            $table->date('fecha_desembolso')->nullable();
             $table->double('cuota_mensual')->null;
             $table->text('observaciones')->nullable();
            
-            $table->integer('id_cliente')->unsigned();
+            $table->string('id_cliente');
 
             $table->foreign('id_cliente')
-            ->references('id')
+            ->references('cedula')
             ->on('clientes')
             ->onUpdate('cascade')
             ->onDelete('cascade');

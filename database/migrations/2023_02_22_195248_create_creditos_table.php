@@ -22,9 +22,9 @@ return new class extends Migration
             $table->double('cuota_mensual')->null;
             $table->text('observaciones')->nullable();
            
-            $table->string('id_cliente');
+            $table->string('cliente');
 
-            $table->foreign('id_cliente')
+            $table->foreign('cliente')
             ->references('cedula')
             ->on('clientes')
             ->onUpdate('cascade')

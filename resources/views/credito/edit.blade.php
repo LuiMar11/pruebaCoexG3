@@ -10,9 +10,10 @@
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
+<body>
+    @include('sweetalert::alert')
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -31,12 +32,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('clientes.index') }}" class="nav-link align-middle px-0 text-white">
+                            <a href="{{ route('cliente.index') }}" class="nav-link align-middle px-0 text-white">
                                 <i class="fas fa-user-tie"></i><span class="ms-1 d-none d-sm-inline"> Clientes</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle text-white">
+                            <a href="{{ route('credito.index') }}" class="nav-link px-0 align-middle text-white">
                                 <i class="fas fa-coins"></i><span class="ms-1 d-none d-sm-inline"> Créditos</span></a>
                         </li>
 
@@ -45,13 +46,93 @@
             </div>
             <div class="col py-3">
                 <section>
-                    <div class="jumbotron jumbotron-fluid">
+                    <div class="jumbotron jumbotron-fluid bg-ligth">
                         <div class="container">
-                            <h1 class="display-6 text-center">Editar Cliente</h1>
+                            <h1 class="display-8 text-center">Editar Crédito</h1>
                         </div>
                     </div>
                     <div class="container">
-                        
+                        <div class="card border-success"><br>
+                            <form action="{{ route('credito.update',$credito->id) }}" method="POST">
+                                @csrf
+                                {{ method_field('PATCH') }}
+                                <div class="form-group row mx-2">
+                                    <label class="col-sm-2 col-form-label"><b>Pagare número</b></label>
+                                    <div class="col-sm-4">
+                                        <input required type="number" class="form-control" id="num_pagare"
+                                            name="num_pagare" value="{{ $credito->num_pagare }}">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"><b>Cuotas mensuales</b> </label>
+                                    <div class="col-sm-3">
+                                        <input required type="number" class="form-control" id="cuota_mensual"
+                                            name="cuota_mensual" value="{{ $credito->cuota_mensual }}">
+                                    </div>
+                                </div> <br>
+                                <div class="form-group row mx-2">
+                                    <label class="col-sm-2 col-form-label"><b>Monto crédito</b> </label>
+                                    <div class="col-sm-4">
+                                        <input required type="number" class="form-control" id="monto_credito"
+                                            name="monto_credito" value="{{ $credito->monto_credito }}">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"><b>Cédula cliente</b> </label>
+                                    <div class="col-sm-3">
+                                        <input required type="text" class="form-control" id="cliente"
+                                            name="cliente" value="{{ $credito->cliente }}">
+                                    </div>
+
+                                </div><br>
+
+                                <div class="form-group row mx-2">
+                                    <label class="col-sm-2 col-form-label"><b>Cuota inicial</b> </label>
+                                    <div class="col-sm-4">
+                                        <input required type="number" class="form-control" id="cuota_inicial"
+                                            name="cuota_inicial" value="{{ $credito->cuota_inicial }}">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"><b>Cliente</b></label>
+                                    <div class="col-sm-3">
+                                        @foreach ($clientes as $cliente)
+                                            @if ($credito->cliente == $cliente->cedula)
+                                                <input required class="form-control" type="text"
+                                                    value=" {{ $cliente->nombres }} {{ $cliente->apellidos }}">
+                                            @endif
+                                        @endforeach
+
+                                    </div>
+
+                                </div><br>
+                                <div class="form-group row mx-2">
+                                    <label class="col-sm-2 col-form-label"><b>Fecha credito</b></label>
+                                    <div class="col-sm-4">
+                                        <input required class="form-control" type="date" name="fecha_credito"
+                                            id="fecha_credito" value="{{ $credito->fecha_credito }}">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"><b>Tasa de interes</b></label>
+                                    <div class="col-sm-3">
+                                        <input required class="form-control" type="text"
+                                            value=" {{ $credito->tasa_interes }}">
+                                    </div>
+                                </div><br>
+                                <div class="form-group row mx-2">
+                                    <label class="col-sm-2 col-form-label"><b>Fecha desembolso</b></label>
+                                    <div class="col-sm-4">
+                                        <input required class="form-control" type="date" name="fecha_desembolso"
+                                        id="fecha_desembolso"" value="{{ $credito->fecha_desembolso }}">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"><b>Observaciones</b></label>
+                                    <div class="col-sm-3">
+                                        <textarea required class="form-control" name="observaciones" id="observaciones" cols="60" rows="5" >{{ $credito->observaciones }}</textarea>
+                                    </div>
+                                </div><br>
+                                <div class="form-group row mx-auto justify-content-center">
+                                    <div class="col-sm-2">
+                                        <button type="submit"
+                                            class="btn btn-primary text-align-center">Guardar cambios</button>
+                                    </div>
+                                </div>
+                                <br>
+                            </form>
+                            <br>
+                        </div>
                     </div>
                 </section>
             </div>

@@ -17,7 +17,7 @@ class CreditoController extends Controller
     {
         $creditos = Credito::all();
         $clientes = Cliente::all();
-        return view('credito.index', compact('creditos', 'creditos'));
+        return view('credito.index', compact('creditos', 'clientes'));
     }
 
     /**
@@ -45,23 +45,13 @@ class CreditoController extends Controller
      */
     public function store(Request $request)
     {
-        $credito = new Credito();
+        $credito = request()->except('_token');
         if ((Credito::where('num_pagare', $request->num_pagare)->exists())) {
             Alert::warning('El crédito ya existe');
             return redirect(route('credito.create'));
         } else {
-            DB::table('creditos')->insert([
-                'num_pagare' => $request->get('num_pagare'),
-                'monto_credito' => $request->get('monto_credito'),
-                'cuota_mensual' => $request->get('cuota_mensual'),
-               'cuota_inicial' => $request->get('cuota_inicial'),
-               'id_cliente' => $request->get('id_cliente'),
-               'fecha_credito' => $request->get('fecha_credito'),
-               'tasa_interes' => $request->get('tasa_interes'),
-               'fecha_desembolso' => $request->get('fecha_desembolso'),
-               'observaciones' => $request->get('fecha_desembolso')
-            ]);
-         
+            $cred = Credito::insert($credito);
+            //$cred->id_cliente = $request->get('id_cliente'); 
             Alert::success('Crédito creado');
         }
         return redirect(route('credito.index'));
@@ -71,9 +61,9 @@ class CreditoController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-    {
+    {   $clientes = Cliente::all();
         $credito = Credito::findOrFail($id);
-        return view('credito.show', compact('credito'));
+        return view('credito.show', compact('credito','clientes'));
     }
 
     /**
@@ -82,7 +72,8 @@ class CreditoController extends Controller
     public function edit($id)
     {
         $credito = Credito::findOrFail($id);
-        return view('credito.edit', compact('credito'));
+        $clientes = Cliente::all();
+        return view('credito.edit', compact('credito','clientes'));
     }
 
     /**

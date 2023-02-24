@@ -73,7 +73,7 @@
                                         <input required type="number" class="form-control" id="monto_credito"
                                             name="monto_credito" placeholder="Cantidad">
                                     </div>
-                                    <form action="" method="GET">
+                                {{--     <form action="" method="GET">
                                         <label class="col-sm-2 col-form-label"><b>Cédula cliente</b> </label>
                                         <div class="col-sm-3">
                                             <input required type="text" class="form-control" id="cedula"
@@ -83,7 +83,7 @@
                                             <button type="submit" class="btn btn-primary"><i
                                                     class="fas fa-search"></i></button>
                                         </div>
-                                    </form>
+                                    </form> --}}
                                 </div><br>
 
                                 <div class="form-group row mx-2">
@@ -94,7 +94,7 @@
                                     </div>
                                     <label class="col-sm-2 col-form-label"><b>Cliente</b></label>
                                     <div class="col-sm-3">
-                                        <select class="form-select" name="id_cliente" id="id_cliente">
+                                        <select class="form-select" name="cliente" id="cliente">
                                             <option defaultValue>Seleccionar...</option>
                                             @foreach ($clientes as $cliente)
                                                 <option value="{{ $cliente->cedula }}">{{ $cliente->nombres }}
@@ -112,7 +112,7 @@
                                     </div>
                                     <label class="col-sm-2 col-form-label"><b>Tasa de interes</b></label>
                                     <div class="col-sm-3">
-                                        <select required class="form-select" name="id_cliente" id="id_cliente">
+                                        <select required class="form-select" name="tasa_interes" id="tasa_interes">
                                             <option defaultValue>Seleccionar...</option>
                                             <option value="2.7">2.7%</option>
                                             <option value="1.7">1.7%</option>

@@ -24,4 +24,3 @@ Route::get('/', function () {
 
 Route::resource('cliente',ClienteController::class);
 Route::resource('credito',CreditoController::class);
-Route::get('credito.cliente',[CreditoController::class,'searchCliente'])->name('credito.cliente');

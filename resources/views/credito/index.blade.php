@@ -120,9 +120,12 @@
                                                         {{ $credito->cuota_mensual }}
                                                     </td>
                                                     <td>
+                                                        {{ $credito->cliente }}
+                                                    </td>
+                                                    <td>
                                                         @foreach ($clientes as $cliente)
-                                                            @if ($credito->id_cliente == $cliente->id)
-                                                            {{ $cliente->nombres }} {{ $cliente->apellidos }}
+                                                            @if ($credito->cliente == $cliente->cedula)
+                                                                {{ $cliente->nombres }} {{ $cliente->apellidos }}
                                                             @endif
                                                         @endforeach
 
@@ -158,7 +161,7 @@
                                         @endif
                                     </tbody>
                                 </table>
-                             
+
                             </div>
                         </div>
                     </div>
